@@ -1,4 +1,5 @@
 /**
+ * @author Kristian Moltke Reitzel
  * hello
  */
 public class hello {
