@@ -24,12 +24,16 @@ public class RejseKort {
         yCoords = new HashSet<>();
     }
 
-    public void depositMoney(int dkk) throws NegativeAmountException {
-        if (dkk < 0) throw new NegativeAmountException();
-        else {
+    public void depositMoney(int dkk) {
+        try {
+            if (dkk < 0) throw new NegativeAmountException();
             balance += dkk;
             System.out.println(dkk + " DKK deposited. New balance: " + balance + " DKK");
+            
+        } catch (NegativeAmountException e) {
+            System.out.println(e.getMessage());
         }
+
     }
 
     public boolean isCheckedIn(int timeStamp) {
