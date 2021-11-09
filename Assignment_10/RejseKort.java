@@ -15,8 +15,12 @@ public class RejseKort {
         isCheckedIn = false;
     }
 
-    public void depositMoney(int dkk) {
-
+    public void depositMoney(int dkk) throws NegativeAmountException {
+        if (dkk<0) throw new NegativeAmountException();
+        else {
+            balance += dkk;
+            System.out.println(dkk + " DKK deposited. New balance: " + balance);
+        }
     }
 
     public boolean isCheckedIn(int timeStamp) {
