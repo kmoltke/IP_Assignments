@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,6 +16,9 @@ public class RejseKort {
     private int timeStamp;
     private Set<Integer> xCoords;
     private Set<Integer> yCoords;
+    // private List<Integer> xCoords;
+    // private List<Integer> yCoords;
+
 
 
 
@@ -21,6 +27,8 @@ public class RejseKort {
         isCheckedIn = false;
         xCoords = new HashSet<>();
         yCoords = new HashSet<>();
+        // xCoords = new ArrayList<>();
+        // yCoords = new ArrayList<>();
     }
 
     public void depositMoney(int dkk) throws NegativeAmountException {
@@ -52,11 +60,22 @@ public class RejseKort {
             this.timeStamp = timeStamp;
             System.out.println("Checked in");
         }
-
     }
 
     public void checkOut(int x, int y, int timeStamp) {
 
+    }
+
+    public int calculatePrice() {
+        int maxX = Collections.max(xCoords);
+        int maxY = Collections.max(yCoords);
+        int minX = Collections.min(xCoords);
+        int minY = Collections.min(yCoords);
+        int result = 12 + (maxX - minX + maxY - minY) * 3;
+        if (result<12) {
+            return 12;
+        }
+        return result < 50 ? result : 50;
     }
     
 }
