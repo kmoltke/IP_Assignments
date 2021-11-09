@@ -7,6 +7,7 @@
 public class RejseKort {
     private int balance;
     private boolean isCheckedIn;
+    private int timeStamp;
 
 
 
@@ -16,7 +17,7 @@ public class RejseKort {
     }
 
     public void depositMoney(int dkk) throws NegativeAmountException {
-        if (dkk<0) throw new NegativeAmountException();
+        if (dkk < 0) throw new NegativeAmountException();
         else {
             balance += dkk;
             System.out.println(dkk + " DKK deposited. New balance: " + balance);
@@ -24,11 +25,15 @@ public class RejseKort {
     }
 
     public boolean isCheckedIn(int timeStamp) {
-        return true;
+        return isCheckedIn && timeTraveled(timeStamp) < 120 ? true : false;
+    }
+
+    public int timeTraveled(int timeStamp) {
+        return timeStamp - this.timeStamp;
     }
 
     public void checkIn(int x, int y, int timeStamp) {
-
+        this.timeStamp = timeStamp;
     }
 
     public void checkOut(int x, int y, int timeStamp) {
