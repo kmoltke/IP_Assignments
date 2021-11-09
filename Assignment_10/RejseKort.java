@@ -42,8 +42,7 @@ public class RejseKort {
     }
 
     public void checkIn(int x, int y, int timeStamp) {
-        xCoords.add(x);
-        yCoords.add(y);
+        addCoordinates(x, y);
 
         if (isCheckedIn) {
             System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
@@ -60,12 +59,17 @@ public class RejseKort {
             throw new NotCheckedInException();
         }
         else {
-            
+            addCoordinates(x, y);
+            balance = balance - calculatePrice();
+            System.out.println("Checked out! " + timeTraveled(timeStamp) + " minutes since last check in. Price is " + calculatePrice() + " DKK, remaining balance is " + balance + " DKK");
         }
 
     }
 
-    
+    public void addCoordinates(int x, int y) {
+        xCoords.add(x);
+        yCoords.add(y);
+    }
 
     public int calculatePrice() {
         int maxX = Collections.max(xCoords);
