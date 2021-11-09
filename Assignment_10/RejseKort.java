@@ -55,9 +55,17 @@ public class RejseKort {
         }
     }
 
-    public void checkOut(int x, int y, int timeStamp) {
-        
+    public void checkOut(int x, int y, int timeStamp) throws NotCheckedInException {
+        if (!isCheckedIn) {
+            throw new NotCheckedInException();
+        }
+        else {
+            
+        }
+
     }
+
+    
 
     public int calculatePrice() {
         int maxX = Collections.max(xCoords);
