@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author Kristian Moltke Reitzel
  * 
@@ -8,12 +11,16 @@ public class RejseKort {
     private int balance;
     private boolean isCheckedIn;
     private int timeStamp;
+    private Set<Integer> xCoords;
+    private Set<Integer> yCoords;
 
 
 
     public RejseKort() {
         balance = 100;
         isCheckedIn = false;
+        xCoords = new HashSet<>();
+        yCoords = new HashSet<>();
     }
 
     public void depositMoney(int dkk) throws NegativeAmountException {
@@ -34,7 +41,17 @@ public class RejseKort {
     }
 
     public void checkIn(int x, int y, int timeStamp) {
-        this.timeStamp = timeStamp;
+        xCoords.add(x);
+        yCoords.add(y);
+        
+        if (isCheckedIn) {
+            System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
+        } 
+        else {
+            System.out.println("Checked in");
+            this.timeStamp = timeStamp;
+        }
+
     }
 
     public void checkOut(int x, int y, int timeStamp) {
