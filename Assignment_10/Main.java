@@ -1,8 +1,8 @@
 public class Main {
     public static void main(String[] args) throws NegativeAmountException {
-        RejseKort rejsekort = new RejseKort();
-        rejsekort.depositMoney(100);
-        rejsekort.depositMoney(-50);
-
+        RejseKort r = new RejseKort();
+        // r.depositMoney(100);
+        r.checkIn(0, 0, 5);
+        System.out.println(r.isCheckedIn(8));
     }
 }

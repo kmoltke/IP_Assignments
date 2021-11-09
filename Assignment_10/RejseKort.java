@@ -25,6 +25,7 @@ public class RejseKort {
     }
 
     public boolean isCheckedIn(int timeStamp) {
+        System.out.println(timeTraveled(timeStamp) + " minutes passed since last check in");
         return isCheckedIn && timeTraveled(timeStamp) < 120 ? true : false;
     }
 
