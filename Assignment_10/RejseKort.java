@@ -1,7 +1,5 @@
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,7 +36,7 @@ public class RejseKort {
 
     public boolean isCheckedIn(int timeStamp) {
         // System.out.println(timeTraveled(timeStamp) + " minutes passed since last check in");
-        return isCheckedIn && timeTraveled(timeStamp) < 120 ? true : false;
+        return isCheckedIn && timeTraveled(timeStamp) <= 120 ? true : false;
     }
 
     public int timeTraveled(int timeStamp) {
@@ -46,12 +44,13 @@ public class RejseKort {
     }
 
     public void checkIn(int x, int y, int timeStamp) throws NotEnoughMoneyException {
-        addCoordinates(x, y);
         if (balance < 100) {
             throw new NotEnoughMoneyException(balance);
         }
+        addCoordinates(x, y);
 
         if (isCheckedIn) {
+            // this.timeStamp = timeStamp;
             System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
         } 
         else {
@@ -91,8 +90,8 @@ public class RejseKort {
         return result < 50 ? result : 50;
     }
 
-    public int getBalance() {
-        return balance;
-    }
+    // public int getBalance() {
+    //     return balance;
+    // }
     
 }
