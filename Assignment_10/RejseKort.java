@@ -28,12 +28,12 @@ public class RejseKort {
         if (dkk < 0) throw new NegativeAmountException();
         else {
             balance += dkk;
-            System.out.println(dkk + " DKK deposited. New balance: " + balance);
+            System.out.println(dkk + " DKK deposited. New balance: " + balance + " DKK");
         }
     }
 
     public boolean isCheckedIn(int timeStamp) {
-        System.out.println(timeTraveled(timeStamp) + " minutes passed since last check in");
+        // System.out.println(timeTraveled(timeStamp) + " minutes passed since last check in");
         return isCheckedIn && timeTraveled(timeStamp) < 120 ? true : false;
     }
 
@@ -41,8 +41,11 @@ public class RejseKort {
         return timeStamp - this.timeStamp;
     }
 
-    public void checkIn(int x, int y, int timeStamp) {
+    public void checkIn(int x, int y, int timeStamp) throws NotEnoughMoneyException {
         addCoordinates(x, y);
+        if (balance < 100) {
+            throw new NotEnoughMoneyException(balance);
+        }
 
         if (isCheckedIn) {
             System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
@@ -61,6 +64,7 @@ public class RejseKort {
         else {
             addCoordinates(x, y);
             balance = balance - calculatePrice();
+            isCheckedIn = false;
             System.out.println("Checked out! " + timeTraveled(timeStamp) + " minutes since last check in. Price is " + calculatePrice() + " DKK, remaining balance is " + balance + " DKK");
         }
 
@@ -81,6 +85,10 @@ public class RejseKort {
             return 12;
         }
         return result < 50 ? result : 50;
+    }
+
+    public int getBalance() {
+        return balance;
     }
     
 }

@@ -1,7 +1,7 @@
 public class Main {
-    public static void main(String[] args) throws NegativeAmountException, NotCheckedInException {
+    public static void main(String[] args) throws NegativeAmountException, NotCheckedInException, NotEnoughMoneyException {
         RejseKort r = new RejseKort();
-        r.depositMoney(100);
+        // r.depositMoney(100);
         r.checkIn(20, 30, 5);
         r.checkIn(5, 10, 10);
         r.checkIn(20, 50, 15);
@@ -9,5 +9,6 @@ public class Main {
         r.checkIn(30, 7, 30);
         // System.out.println(r.isCheckedIn(8));
         r.checkOut(20, 15, 40);
+        r.checkIn(5, 2, 50);
     }
 }
