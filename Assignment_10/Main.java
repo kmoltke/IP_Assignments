@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] args) throws NotCheckedInException, NotEnoughMoneyException {
+    public static void main(String[] args) {
         RejseKort r = new RejseKort();
         r.depositMoney(100);
         r.checkIn(20, 30, 5);

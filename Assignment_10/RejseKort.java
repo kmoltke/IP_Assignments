@@ -43,34 +43,36 @@ public class RejseKort {
         return timeStamp - this.timeStamp;
     }
 
-    public void checkIn(int x, int y, int timeStamp) throws NotEnoughMoneyException {
-        if (balance < 100) {
-            throw new NotEnoughMoneyException(balance);
-        }
-        addCoordinates(x, y);
+    public void checkIn(int x, int y, int timeStamp) {
+        try {
+            if (balance < 100) throw new NotEnoughMoneyException(balance);
 
-        if (isCheckedIn) {
-            // this.timeStamp = timeStamp;
-            System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
-        } 
-        else {
-            isCheckedIn = true;
-            this.timeStamp = timeStamp;
-            System.out.println("Checked in");
+            addCoordinates(x, y);
+            if (isCheckedIn) System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
+            
+            else {
+                isCheckedIn = true;
+                this.timeStamp = timeStamp;
+                System.out.println("Checked in");
+            }
+            
+        } catch (NotEnoughMoneyException e) {
+            e.getMessage();
         }
+        
     }
 
-    public void checkOut(int x, int y, int timeStamp) throws NotCheckedInException {
-        if (!isCheckedIn) {
-            throw new NotCheckedInException();
-        }
-        else {
+    public void checkOut(int x, int y, int timeStamp) {
+        try {
+            if (!isCheckedIn) throw new NotCheckedInException();
             addCoordinates(x, y);
             balance = balance - calculatePrice();
             isCheckedIn = false;
             System.out.println("Checked out! " + timeTraveled(timeStamp) + " minutes since last check in. Price is " + calculatePrice() + " DKK, remaining balance is " + balance + " DKK");
+            
+        } catch (NotCheckedInException e) {
+            System.out.println(e.getMessage());
         }
-
     }
 
     public void addCoordinates(int x, int y) {
