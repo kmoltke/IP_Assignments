@@ -43,13 +43,14 @@ public class RejseKort {
     public void checkIn(int x, int y, int timeStamp) {
         xCoords.add(x);
         yCoords.add(y);
-        
+
         if (isCheckedIn) {
             System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
         } 
         else {
-            System.out.println("Checked in");
+            isCheckedIn = true;
             this.timeStamp = timeStamp;
+            System.out.println("Checked in");
         }
 
     }
