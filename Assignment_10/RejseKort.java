@@ -16,19 +16,12 @@ public class RejseKort {
     private int timeStamp;
     private Set<Integer> xCoords;
     private Set<Integer> yCoords;
-    // private List<Integer> xCoords;
-    // private List<Integer> yCoords;
-
-
-
 
     public RejseKort() {
         balance = 100;
         isCheckedIn = false;
         xCoords = new HashSet<>();
         yCoords = new HashSet<>();
-        // xCoords = new ArrayList<>();
-        // yCoords = new ArrayList<>();
     }
 
     public void depositMoney(int dkk) throws NegativeAmountException {
@@ -63,7 +56,7 @@ public class RejseKort {
     }
 
     public void checkOut(int x, int y, int timeStamp) {
-
+        
     }
 
     public int calculatePrice() {
