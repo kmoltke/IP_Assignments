@@ -48,7 +48,10 @@ public class RejseKort {
             if (balance < 100) throw new NotEnoughMoneyException(balance);
 
             addCoordinates(x, y);
-            if (isCheckedIn) System.out.println("Continued journey (" + timeTraveled(timeStamp) + " minutes since last check in)");
+            if (isCheckedIn) {
+                System.out.println("Continued journey (" + Math.abs(timeTraveled(timeStamp)) + " minutes since last check in)");
+                this.timeStamp = timeStamp;
+            }
             
             else {
                 isCheckedIn = true;
@@ -57,7 +60,7 @@ public class RejseKort {
             }
             
         } catch (NotEnoughMoneyException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
         
     }
@@ -66,9 +69,9 @@ public class RejseKort {
         try {
             if (!isCheckedIn) throw new NotCheckedInException();
             addCoordinates(x, y);
-            balance = balance - calculatePrice();
+            balance = balance - Math.abs(calculatePrice());
             isCheckedIn = false;
-            System.out.println("Checked out! " + timeTraveled(timeStamp) + " minutes since last check in. Price is " + calculatePrice() + " DKK, remaining balance is " + balance + " DKK");
+            System.out.println("Checked out! " + Math.abs(timeTraveled(timeStamp)) + " minutes since last check in. Price is " + calculatePrice() + " DKK, remaining balance is " + balance + " DKK");
             
         } catch (NotCheckedInException e) {
             System.out.println(e.getMessage());
@@ -86,14 +89,9 @@ public class RejseKort {
         int minX = Collections.min(xCoords);
         int minY = Collections.min(yCoords);
         int result = 12 + (maxX - minX + maxY - minY) * 3;
-        if (result<12) {
+        if (result<=12) {
             return 12;
         }
-        return result < 50 ? result : 50;
-    }
-
-    // public int getBalance() {
-    //     return balance;
-    // }
-    
+        return result <= 50 ? result : 50;
+    }   
 }
