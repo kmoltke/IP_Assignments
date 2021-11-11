@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Kristian Moltke Reitzel
+ */
 public class Pizza extends Food {
     protected List<String> toppings;   // List of toppings
 

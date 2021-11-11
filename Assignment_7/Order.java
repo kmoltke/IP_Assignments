@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Kristian Moltke Reitzel
+ */
 public class Order {
     protected List<Food> ordered;
 
